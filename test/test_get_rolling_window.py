@@ -3,15 +3,56 @@ import numpy as np
 
 
 def test_main():
-    array = np.arange(1, 8)
+    expected = np.array([
+        [1, 2, 3],
+        [3, 4, 5],
+        [5, 6, 7],
+    ])
 
-    result = rolling_window(array, 3, 2)
+    assert np.array_equal(
+        rolling_window(np.arange(1, 8), 3, 2),
+        expected
+    )
+
+    assert np.array_equal(
+        rolling_window(np.arange(1, 9), 3, 2),
+        expected
+    )
+
+
+def float_array(start, before) -> np.ndarray:
+    return np.array([
+        float(i)
+        for i in range(start, before)
+    ])
+
+
+def test_float():
+    expected = np.array([
+        [1., 2., 3.],
+        [3., 4., 5.],
+        [5., 6., 7.],
+    ])
+
+    assert np.array_equal(
+        rolling_window(float_array(1, 8), 3, 2),
+        expected
+    )
+
+    assert np.array_equal(
+        rolling_window(float_array(1, 9), 3, 2),
+        expected
+    )
+
+
+def test_bool():
+    result = rolling_window(
+        np.array([True, False, True, True, False, False]), 3, 2)
 
     assert np.array_equal(
         result,
         np.array([
-            [1, 2, 3],
-            [3, 4, 5],
-            [5, 6, 7],
+            [True, False, True],
+            [True, True, False]
         ])
     )
