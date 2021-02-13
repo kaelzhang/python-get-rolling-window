@@ -5,7 +5,9 @@
 
 # get-rolling-window
 
-Gets an array of `size`-period rolling windows from an numpy 1-D array
+Gets an array of `size`-period rolling windows from an numpy 1-D array.
+
+`rolling_window` uses [`np.lib.stride_tricks.as_strided`](https://numpy.org/doc/stable/reference/generated/numpy.lib.stride_tricks.as_strided.html) internally and handles the carefulness for you.
 
 ## Install
 
