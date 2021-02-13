@@ -9,14 +9,34 @@ def test_main():
         [5, 6, 7],
     ])
 
+    # 1, 2, 3, 4, 5, 6, 7
+
     assert np.array_equal(
         rolling_window(np.arange(1, 8), 3, 2),
         expected
     )
 
     assert np.array_equal(
-        rolling_window(np.arange(1, 9), 3, 2),
+        rolling_window(np.arange(1, 9), 3, 2, 1),
         expected
+    )
+
+    assert np.array_equal(
+        rolling_window(np.arange(1, 9), 3, 1, 2),
+        np.array([
+            [1, 3, 5],
+            [2, 4, 6],
+            [3, 5, 7],
+            [4, 6, 8]
+        ])
+    )
+
+    assert np.array_equal(
+        rolling_window(np.arange(1, 9), 3, 2, 2),
+        np.array([
+            [1, 3, 5],
+            [3, 5, 7]
+        ])
     )
 
 

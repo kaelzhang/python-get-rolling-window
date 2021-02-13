@@ -14,7 +14,7 @@ def rolling_window(
     shift: Optional[int] = None,
     stride: int = 1
 ) -> np.ndarray:
-    """Gets an `size`-period rolling window for `array` as an numpy 1-D array
+    """Gets an array of `size`-period rolling windows from `array` as an numpy 1-D array
 
     Graph::
 
@@ -30,7 +30,7 @@ def rolling_window(
     Args:
         array (np.ndarray): The 1-D numpy array. If the given array has more than one dimensions, it will be treated as a 1-D array.
         size (int): The size of the window.
-        shift (:obj:`int`, optional): The `shift` argument determines the number of input elements by which the window moves on each iteration. Defaults to no shift.
+        shift (:obj:`int`, optional): The `shift` argument determines the number of input elements by which the window moves on each iteration. Defaults to the size of window.
         stride (:obj:`int`, optional): Determines the stride of the input elements. Defaults to `1`.
 
     Returns:
@@ -39,11 +39,12 @@ def rolling_window(
 
     shift = shift or size
 
-    window_step = shift * stride
+    first_length = 1 + stride * (size - 1)
 
-    step_length = len(array) - size
-    steps = step_length // window_step
-    rest = step_length - window_step * steps
+    length = len(array)
+    step_length = length - first_length
+    steps = step_length // shift
+    rest = step_length - shift * steps
 
     steps += 1
 

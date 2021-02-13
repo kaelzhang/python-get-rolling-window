@@ -5,7 +5,7 @@
 
 # get-rolling-window
 
-Create a rolling window from a 1-D numpy ndarray
+Gets an array of `size`-period rolling windows from an numpy 1-D array
 
 ## Install
 
@@ -29,8 +29,6 @@ rolling_window(array, 3, 2)
 
 ## rolling_window(array, size, shift, stride) -> np.ndarray
 
-Gets an `size`-period rolling window for `array` as an numpy 1-D array
-
 ```
 |-------- size:3 --------|
 |- stride:1 -|           |
@@ -44,7 +42,7 @@ Gets an `size`-period rolling window for `array` as an numpy 1-D array
 
 - **array** `np.ndarray` The 1-D numpy array. If the given array has more than one dimensions, it will be treated as a 1-D array.
 - **size** `int` The size of the window.
-- **shift?** `int=None` The `shift` argument determines the number of input elements by which the window moves on each iteration. Defaults to no shift.
+- **shift?** `int=None` The `shift` argument determines the number of input elements by which the window moves on each iteration. Defaults to `size`.
 - **stride?** `int=1` Determines the stride of the input elements. Defaults to `1`.
 
 Returns `np.ndarray`
